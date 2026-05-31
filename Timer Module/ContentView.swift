@@ -4,77 +4,78 @@
 //
 //  Created by Michael Fluharty on 5/30/26.
 //
+//  v0.1 placeholder. The real single-timer card (TimerView)
+//  arrives at v0.4. For now this just confirms the TimerData
+//  schema works end-to-end (insert, fetch, display, delete).
+//
 
 import SwiftUI
 import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query(sort: \TimerData.createdDate, order: .reverse) private var presets: [TimerData]
 
     var body: some View {
-        NavigationViewWrapper {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        NavigationStack {
+            Group {
+                if presets.isEmpty {
+                    ContentUnavailableView(
+                        "Add your first timer",
+                        systemImage: "timer",
+                        description: Text("Or tap Settings → Load sample presets")
+                    )
+                } else {
+                    List {
+                        ForEach(presets) { preset in
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(preset.notation.isEmpty ? "Untitled" : preset.notation)
+                                    .font(.headline)
+                                Text("\(preset.durationSeconds)s • \(preset.mode.rawValue)")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .onDelete(perform: deletePresets)
                     }
                 }
-                .onDelete(perform: deleteItems)
             }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
+            .navigationTitle("Timer Module")
             .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button(action: addPlaceholder) {
+                        Label("Add", systemImage: "plus")
                     }
                 }
             }
         }
     }
 
-    private func addItem() {
+    private func addPlaceholder() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+            let now = Date()
+            let newPreset = TimerData(
+                notation: "Timer \(presets.count + 1)",
+                note: "",
+                mode: .countDown,
+                durationSeconds: 300
+            )
+            newPreset.createdDate = now
+            newPreset.updatedDate = now
+            modelContext.insert(newPreset)
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deletePresets(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                modelContext.delete(presets[index])
             }
         }
-    }
-}
-
-fileprivate struct NavigationViewWrapper<Content: View>: View {
-    let content: () -> Content
-
-    var body: some View {
-#if os(macOS)
-        NavigationSplitView {
-            content()
-        } detail: {
-            Text("Select an item")
-        }
-#else
-        content()
-#endif
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: TimerData.self, inMemory: true)
 }

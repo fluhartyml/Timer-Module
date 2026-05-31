@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C0986C682FCB588900FD46D8 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0986C672FCB588900FD46D8 /* WidgetKit.framework */; };
+		C0986C6A2FCB588900FD46D8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0986C692FCB588900FD46D8 /* SwiftUI.framework */; };
+		C0986C7B2FCB588900FD46D8 /* Timer Module WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C0986C652FCB588900FD46D8 /* Timer Module WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C07659F32FCB53AF004E928C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,12 +27,36 @@
 			remoteGlobalIDString = C07659E02FCB53AE004E928C;
 			remoteInfo = "Timer Module";
 		};
+		C0986C792FCB588900FD46D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C07659D92FCB53AE004E928C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0986C642FCB588900FD46D8;
+			remoteInfo = "Timer Module WidgetExtension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C0986C802FCB588900FD46D8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C0986C7B2FCB588900FD46D8 /* Timer Module WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C07659E12FCB53AE004E928C /* Timer Module.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timer Module.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07659F22FCB53AF004E928C /* Timer ModuleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Timer ModuleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07659FC2FCB53AF004E928C /* Timer ModuleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Timer ModuleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0986C652FCB588900FD46D8 /* Timer Module WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Timer Module WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0986C672FCB588900FD46D8 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		C0986C692FCB588900FD46D8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,6 +66,13 @@
 				Info.plist,
 			);
 			target = C07659E02FCB53AE004E928C /* Timer Module */;
+		};
+		C0986C7F2FCB588900FD46D8 /* Exceptions for "Timer Module Widget" folder in "Timer Module WidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C0986C642FCB588900FD46D8 /* Timer Module WidgetExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -56,6 +93,14 @@
 		C07659FF2FCB53AF004E928C /* Timer ModuleUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Timer ModuleUITests";
+			sourceTree = "<group>";
+		};
+		C0986C6B2FCB588900FD46D8 /* Timer Module Widget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C0986C7F2FCB588900FD46D8 /* Exceptions for "Timer Module Widget" folder in "Timer Module WidgetExtension" target */,
+			);
+			path = "Timer Module Widget";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -82,6 +127,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C0986C622FCB588900FD46D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0986C6A2FCB588900FD46D8 /* SwiftUI.framework in Frameworks */,
+				C0986C682FCB588900FD46D8 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,6 +145,8 @@
 				C07659E32FCB53AE004E928C /* Timer Module */,
 				C07659F52FCB53AF004E928C /* Timer ModuleTests */,
 				C07659FF2FCB53AF004E928C /* Timer ModuleUITests */,
+				C0986C6B2FCB588900FD46D8 /* Timer Module Widget */,
+				C0986C662FCB588900FD46D8 /* Frameworks */,
 				C07659E22FCB53AE004E928C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,8 +157,18 @@
 				C07659E12FCB53AE004E928C /* Timer Module.app */,
 				C07659F22FCB53AF004E928C /* Timer ModuleTests.xctest */,
 				C07659FC2FCB53AF004E928C /* Timer ModuleUITests.xctest */,
+				C0986C652FCB588900FD46D8 /* Timer Module WidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C0986C662FCB588900FD46D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0986C672FCB588900FD46D8 /* WidgetKit.framework */,
+				C0986C692FCB588900FD46D8 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,10 +181,12 @@
 				C07659DD2FCB53AE004E928C /* Sources */,
 				C07659DE2FCB53AE004E928C /* Frameworks */,
 				C07659DF2FCB53AE004E928C /* Resources */,
+				C0986C802FCB588900FD46D8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C0986C7A2FCB588900FD46D8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				C07659E32FCB53AE004E928C /* Timer Module */,
@@ -176,6 +244,28 @@
 			productReference = C07659FC2FCB53AF004E928C /* Timer ModuleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		C0986C642FCB588900FD46D8 /* Timer Module WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0986C7C2FCB588900FD46D8 /* Build configuration list for PBXNativeTarget "Timer Module WidgetExtension" */;
+			buildPhases = (
+				C0986C612FCB588900FD46D8 /* Sources */,
+				C0986C622FCB588900FD46D8 /* Frameworks */,
+				C0986C632FCB588900FD46D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C0986C6B2FCB588900FD46D8 /* Timer Module Widget */,
+			);
+			name = "Timer Module WidgetExtension";
+			packageProductDependencies = (
+			);
+			productName = "Timer Module WidgetExtension";
+			productReference = C0986C652FCB588900FD46D8 /* Timer Module WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,6 +287,9 @@
 						CreatedOnToolsVersion = 26.4;
 						TestTargetID = C07659E02FCB53AE004E928C;
 					};
+					C0986C642FCB588900FD46D8 = {
+						CreatedOnToolsVersion = 26.4;
+					};
 				};
 			};
 			buildConfigurationList = C07659DC2FCB53AE004E928C /* Build configuration list for PBXProject "Timer Module" */;
@@ -216,6 +309,7 @@
 				C07659E02FCB53AE004E928C /* Timer Module */,
 				C07659F12FCB53AF004E928C /* Timer ModuleTests */,
 				C07659FB2FCB53AF004E928C /* Timer ModuleUITests */,
+				C0986C642FCB588900FD46D8 /* Timer Module WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -236,6 +330,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C07659FA2FCB53AF004E928C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0986C632FCB588900FD46D8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -266,6 +367,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C0986C612FCB588900FD46D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -278,6 +386,11 @@
 			isa = PBXTargetDependency;
 			target = C07659E02FCB53AE004E928C /* Timer Module */;
 			targetProxy = C07659FD2FCB53AF004E928C /* PBXContainerItemProxy */;
+		};
+		C0986C7A2FCB588900FD46D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0986C642FCB588900FD46D8 /* Timer Module WidgetExtension */;
+			targetProxy = C0986C792FCB588900FD46D8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -590,6 +703,71 @@
 			};
 			name = Release;
 		};
+		C0986C7D2FCB588900FD46D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X3F6UJ44H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Timer Module Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Timer Module Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nightgard.Timer-Module.Timer-Module-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C0986C7E2FCB588900FD46D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3X3F6UJ44H;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Timer Module Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Timer Module Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nightgard.Timer-Module.Timer-Module-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -625,6 +803,15 @@
 			buildConfigurations = (
 				C0765A0E2FCB53AF004E928C /* Debug */,
 				C0765A0F2FCB53AF004E928C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0986C7C2FCB588900FD46D8 /* Build configuration list for PBXNativeTarget "Timer Module WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0986C7D2FCB588900FD46D8 /* Debug */,
+				C0986C7E2FCB588900FD46D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
