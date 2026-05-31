@@ -2,11 +2,9 @@
 //  ContentView.swift
 //  Timer Module
 //
-//  Created by Michael Fluharty on 5/30/26.
-//
-//  v0.1 placeholder. The real single-timer card (TimerView)
-//  arrives at v0.4. For now this just confirms the TimerData
-//  schema works end-to-end (insert, fetch, display, delete).
+//  v0.4 — wraps the TimerView card. Active-preset selection arrives
+//  at v0.5 (PresetListView); for now defaults to the first preset
+//  in the library so the card has something to show.
 //
 
 import SwiftUI
@@ -14,31 +12,33 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(TimerRuntime.self) private var runtime
     @Query(sort: \TimerData.createdDate, order: .reverse) private var presets: [TimerData]
 
     var body: some View {
         NavigationStack {
-            Group {
-                if presets.isEmpty {
-                    ContentUnavailableView(
-                        "Add your first timer",
-                        systemImage: "timer",
-                        description: Text("Or tap Settings → Load sample presets")
-                    )
-                } else {
-                    List {
-                        ForEach(presets) { preset in
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(preset.notation.isEmpty ? "Untitled" : preset.notation)
-                                    .font(.headline)
-                                Text("\(preset.durationSeconds)s • \(preset.mode.rawValue)")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
+            ScrollView {
+                VStack(spacing: 24) {
+                    TimerView(preset: currentPreset)
+                        .padding(.horizontal)
+
+                    // Placeholder preset list — replaced by PresetListView at v0.5
+                    if !presets.isEmpty {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Library")
+                                .font(.headline)
+                                .padding(.horizontal)
+                            ForEach(presets) { preset in
+                                presetRow(preset)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        runtime.activePresetId = preset.id
+                                    }
                             }
                         }
-                        .onDelete(perform: deletePresets)
                     }
                 }
+                .padding(.vertical)
             }
             .navigationTitle("Timer Module")
             .toolbar {
@@ -49,6 +49,35 @@ struct ContentView: View {
                 }
             }
         }
+    }
+
+    private var currentPreset: TimerData? {
+        if let activeId = runtime.activePresetId,
+           let match = presets.first(where: { $0.id == activeId }) {
+            return match
+        }
+        return presets.first
+    }
+
+    private func presetRow(_ preset: TimerData) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(preset.notation.isEmpty ? "Untitled" : preset.notation)
+                    .font(.body.weight(.medium))
+                if !preset.note.isEmpty {
+                    Text(preset.note)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                }
+            }
+            Spacer()
+            Text("\(preset.durationSeconds)s")
+                .font(.caption.monospacedDigit())
+                .foregroundStyle(.tertiary)
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 4)
     }
 
     private func addPlaceholder() {
@@ -65,17 +94,10 @@ struct ContentView: View {
             modelContext.insert(newPreset)
         }
     }
-
-    private func deletePresets(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(presets[index])
-            }
-        }
-    }
 }
 
 #Preview {
     ContentView()
         .modelContainer(for: TimerData.self, inMemory: true)
+        .environment(TimerRuntime.shared)
 }
