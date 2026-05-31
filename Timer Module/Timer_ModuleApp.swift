@@ -26,6 +26,7 @@ struct Timer_ModuleApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(TimerRuntime.shared)
         }
         .modelContainer(sharedModelContainer)
     }
